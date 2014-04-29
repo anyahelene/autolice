@@ -8,7 +8,9 @@ import sys
 contributors = {
     'anya' : 'Anya Helene Bagge',
     'biz002' : 'Tero Hasu',
-    'eva' : 'Anya Helene Bagge'
+    'eva' : 'Anya Helene Bagge',
+    'andreash' : 'Andreas Hjortland',
+    'magne' : 'Magne Haveraaen'
 }
 # list of copyright owners that should have their years updated from the log
 autoYear = []
@@ -17,10 +19,12 @@ autoYear = []
 autoCopyright = {
     "University of Bergen" : "*",
     "Anya Helene Bagge" : "Anya Helene Bagge",
-    "Tero Hasu" : "Tero Hasu"
+    "Tero Hasu" : "Tero Hasu",
+    "Magne Haveraaen" : "Magne Haveraaen"
 }
 
 standard_licenses = [("", {"GPLv3+", "EPLv1"})]
+#standard_licenses = [("", {"MIT"})]
 
 # format for copyright lines
 fmt_copyright = "Copyright (c) %s %s\n"
@@ -50,6 +54,7 @@ re_eplLine = re.compile(r'.*(All rights reserved.\s*This program and the accompa
 re_eplIdLine = re.compile(r'.*(http://www.eclipse.org/legal/epl-v10.html).*') # lines identifying an EPLv1.0 notice
 re_gplLine = re.compile(r'.*(free software: you can redistribute it|GNU General Public License|any later version\.|http://www.gnu.org/licenses/).*') # lines in a GPL notice
 re_gplIdLine = re.compile(r'.*(Free Software Foundation, either version 3 of the License, or).*') # lines identifying a GPLv3+ notice
+re_mitIdLine = re.compile(r'.*(copy, modify, merge, publish, distribute, sublicense).*') # line identifing a MIT notice
 re_mitLine = re.compile(r'.*(hereby granted, free of charge|software and associated documentation|Software without restriction|copy, modify, merge, publish, distribute, sublicense|and to permit persons to|do so, subject to the following conditions|substantial portions of the Software|WITHOUT WARRANTY OF ANY KIND|BUT NOT LIMITED TO THE WARRANTIES|PARTICULAR PURPOSE AND NONINFRINGEMENT|BE LIABLE FOR ANY CLAIM|WHETHER IN AN ACTION OF CONTRACT|THE SOFTWARE).*')
 re_moreInfoLine = re.compile(r'.*See.*for more info.*')
 re_copyright = re.compile(r'\s*Copyright\s*(\([cC]\)|©)\s*([0-9–, -]*)\s*(.*)$') # copyright lines
@@ -213,7 +218,7 @@ def decodeCopyright(copy):
         elif re_gplIdLine.match(l):
             licenses.add("GPLv3+")
             mode = 'n'
-        elif re_gplIdLine.match(l):
+        elif re_mitIdLine.match(l):
             licenses.add("MIT")
             mode = 'n'
         elif re_eplLine.match(l) or re_gplLine.match(l) or re_mitLine.match(l) or re_moreInfoLine.match(l):
